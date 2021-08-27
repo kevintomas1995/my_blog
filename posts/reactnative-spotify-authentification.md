@@ -63,7 +63,8 @@ const LoginScreen = ({ navigation }) => {
         "user-read-email",
         "user-read-private",
       ],
-      // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
+      // In order to follow the "Authorization Code Flow" 
+      // to fetch token after authorizationEndpoint
       // this must be set to false
       usePKCE: false,
       redirectUri: "exp://127.0.0.1:19000/",
