@@ -91,3 +91,14 @@ const yourData =
   id: 3,
 ```
 In case you're only looking for one specific data point in your collection, you can also use the code snippet from above. In this specific case, we are looking for data entries with the id of 3. 
+
+In a last step, you would want to cut the connection to your database with following code: 
+
+```js
+client.close();
+```
+
+## Conclusion
+So this was still a quite simple use case of integrating NextJS and MongoDB. It can get a bit more complex for example when it comes to fetching data for dynamic site. This will be covered in a separate blog post!
+
+I hope you found this blog post helpful. Anyway, thank you for reading this article and have a nice day!
