@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     try {
       client = await MongoClient.connect(
-        "mongodb+srv://<username>:<pw>@cluster0.pqdli.mongodb.net/myBlog?retryWrites=true&w=majority"
+        "mongodb+srv://kevin:XkWJANgOTkACuIMGTzIIokbszqAo@cluster0.pqdli.mongodb.net/myBlog?retryWrites=true&w=majority"
       );
     } catch (error) {
       res.status(500).json({ message: "Could not connect to database" });
