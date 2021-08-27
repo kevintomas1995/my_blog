@@ -125,3 +125,92 @@ res.status(201).json({
   successfully!" 
   });
 ```
+
+## Use the api in your React component
+After setting your api route, we can go ahead and use this api route in our React components. 
+
+For example, you could trigger this api route whenever a certain button in a form is clicked. The data from this form would then be sent to our database. We will play through this scenario in the following code snippets:
+
+```js
+async function 
+clickHandler(enteredData) {
+  const response = await 
+  fetch(
+    "/api/your-api-route", 
+    {
+    method: 
+    "POST",
+    body: 
+    JSON.stringify(enteredData),
+    headers: 
+    {
+      "Content-Type": 
+      "application/json",
+    },
+  });
+
+  const data = 
+  await 
+  response.json();
+
+  console.log(
+    data
+    );
+  }
+```
+
+Generally, you would insert this kind of function in a regular React component, just in front of the render or return function. Some React element should then point to our **clickHandler** function. In the example below a simple button will execute the function every time you press it.
+
+```js
+<button 
+onClick =
+{clickHandler}
+ />
+```
+
+At some point you also need to define the **enteredData**, which is used as an argument in our **clickHandler** function. For example, you could bind some user input to this data. But this is not the focus of this blog post. 
+
+Let's instead dive in to the **clickHandler** function!
+
+```js
+const response = 
+await 
+  fetch(
+    "/api/your-api-route", 
+```
+
+Since our **clickHandler** function is asynchronous we can again use the await keyword in the body of the function. In this post I used the fetch api, which comes with React out of the box. This code will also work with any other libraries like axios or whatever you like. 
+
+As a first argument of the fetch function, you need to pass the route. And this is exactly the route, which we defined earlier. 
+
+**NOTE**: You **MUST** replace "your-api-route" with the name of your javascript-file in the api directory! This is essential!
+
+```js
+{
+  method: 
+  "POST",
+  body: 
+  JSON.
+  stringify(enteredData),
+  headers: 
+  {
+    "Content-Type": 
+    "application/json",
+  },
+});
+```
+As a second argument you pass some more information, which specify the request we make with this api call. We are using the POST method since we want to write data. Additionally we need to pass the data as an argument to the body of the request. Our code on the server relies on data being passed to the body. We also convert it the data to the json format, so that we can easily handle the data on the server. In the headers we lastly define the type of the content (this is nothing special releated to NextJS or MongoDB).
+
+```js
+const data = 
+  await 
+  response.json();
+
+  console.log(
+    data
+    );
+```
+In a last step you can store the print out the response, which is totally optional is that specific case here. If you can recall,  in this case this would be the message: "Data inserted successfully!". That's simply the response we defined in our api
+
+## Conclusion
+In this post you learned how to set up your own custom api and how to call it in a regular React component. This is a really useful and powerful skill to know when it comes to building fullstack NextJS web apps. I hope you enjoyed this post and have a nice day!
