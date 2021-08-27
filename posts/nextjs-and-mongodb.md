@@ -15,20 +15,43 @@ After completing your registration and setting up an organization, you mainly wi
 ![Create an user](user.png)
 
 
-After setting up your user, go to **Network Access** 
+After setting up your user, go to **Network Access** and add your current IP-address in order to be able to establish a connection to your database. Alternatively, you can allow access from every IP-address.
 
+![Add IP-address](network.png)
+
+
+## How to set up my code?
 
 
 
 
 ```js
-const basics = 'Okay, that should not be too difficult actually';
+export async function getStaticProps() {
+  const client = await MongoClient.connect(
+    "mongodb+srv://kevin:XkWJANgOTkACuIMGTzIIokbszqAo@cluster0.pqdli.mongodb.net/meetings?retryWrites=true&w=majority"
+  );
+  const db = client.db();
 
-function printBasics() {
-  console.log(basics):
+  const meetupsCollection = db.collection("meetups");
+
+  // .find() findet by default alle einträge in der jeweiligen collection
+  const meetups = await meetupsCollection.find().toArray();
+
+  client.close();
+
+  return {
+    props: {
+      meetups: meetups.map((meetup) => ({
+        title: meetup.title,
+        address: meetup.address,
+        image: meetup.image,
+        // das hier ist die id, die von mongodb automatisch erstellt wird und die man konvertieren muss noch
+        id: meetup._id.toString(),
+        // description braucht man hier nicht, weil das nicht ausgegeben wird auf dieser Seite
+      })),
+    },
+    revalidate: 1,
+  };
 }
-
-printBasics();
 ```
 
-Learn more about it [here](https://developer.mozilla.org/de/docs/Web/JavaScript).
