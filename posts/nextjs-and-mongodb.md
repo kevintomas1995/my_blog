@@ -21,13 +21,15 @@ After setting up your user, go to **Network Access** and add your current IP-add
 
 
 ## How to set up my code?
+Since this post is all about data fetching, the **getStaticProps** function is the perfect place for establishing a connection and fetching data. If you don't know about getStaticProps and the other options NextJS offers, visit [this site](https://nextjs.org/docs/basic-features/data-fetching).
 
-
+Below you can find the whole code for connecting and fetching data from MongoDB. We will go through it step by step.
 
 
 ```js
 export async function 
 getStaticProps() {
+
   const client = 
   await 
   MongoClient.connect(
@@ -38,11 +40,13 @@ getStaticProps() {
     <dbname>?retryWrites
     =true&w=majority"
   );
+
   const db = 
   client.db();
 
   const yourCollection = 
-  db.collection("yourCollection");
+  db.collection
+  ("yourCollection");
 
 
   const yourData = 
@@ -57,3 +61,4 @@ getStaticProps() {
 }
 ```
 
+As you can see, I constructed the whole function to be asynchronous, which usually is a good idea when it comes to data fetching.
