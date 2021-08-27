@@ -39,14 +39,17 @@ import axios from "axios";
 import * as songAction from "../store/actions/topSongs";
 
 const discovery = {
-  authorizationEndpoint: "https://accounts.spotify.com/authorize",
-  tokenEndpoint: "https://accounts.spotify.com/api/token",
+  authorizationEndpoint: 
+  "https://accounts.spotify.com/authorize",
+  tokenEndpoint: 
+  "https://accounts.spotify.com/api/token",
 };
 
 const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [token, setToken] = useState("");
-  const [request, response, promptAsync] = useAuthRequest(
+  const [request, response, promptAsync] = 
+  useAuthRequest(
     {
       responseType: ResponseType.Token,
       clientId: "YOUR_CLIENT_ID",
@@ -77,7 +80,9 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (token) {
-      axios("https://api.spotify.com/v1/me/top/tracks?time_range=short_term", {
+      axios(
+        "https://api.spotify.com/v1/me/top/
+        tracks?time_range=short_term", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -106,7 +111,8 @@ const LoginScreen = ({ navigation }) => {
   });
 
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" 
+    style={styles.container}>
       <StatusBar style="light" />
       <Text
         style={{
@@ -153,15 +159,18 @@ Generally, we are using the **implicit** [authentication flow](https://developer
 
 ```js
 const discovery = {
-  authorizationEndpoint: "https://accounts.spotify.com/authorize",
-  tokenEndpoint: "https://accounts.spotify.com/api/token",
+  authorizationEndpoint: 
+  "https://accounts.spotify.com/authorize",
+  tokenEndpoint: 
+  "https://accounts.spotify.com/api/token",
 };
 ``` 
 
 The first constant **discovery** holds two links, which are essential for authentication process. **authorizationEndpoint** will be the link to which you will be redirected once you click the login button. The second one, **tokenEndpoint**, will call the spotify api in order to create a unique spotify token for your current session. 
 
 ```js
-const [request, response, promptAsync] = useAuthRequest(
+const [request, response, promptAsync] = 
+useAuthRequest(
     {
       responseType: ResponseType.Token,
       clientId: "YOUR_CLIENT_ID",
@@ -201,7 +210,9 @@ useEffect(() => {
   ```js
   useEffect(() => {
     if (token) {
-      axios("https://api.spotify.com/v1/me/top/tracks?time_range=short_term", {
+      axios(
+        "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
+         {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -234,5 +245,7 @@ useEffect(() => {
 
   The rest of the code is really pretty standards ReactNative code!
 
+  As I mentioned in the intro feel free to checkout the [github repo](https://github.com/kevintomas1995/spotify_top_songs_player)
+
   ## Conclusion
-  In the second part of this series we will 
+  In the second part of this series we will cover the displaying and playing of your current top songs. As always, thank you for reading my story!
