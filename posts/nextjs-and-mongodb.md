@@ -1,7 +1,7 @@
 ---
 title: Integrating MongoDB to NextJs
 excerpt: Connecting a database like MongoDB is an essential feature for many web apps. NextJS makes it pretty easy to do it!
-image: mongodb.png
+image: mongo.png
 isFeatured: true
 date: '2021-08-27'
 ---
