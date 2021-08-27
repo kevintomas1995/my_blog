@@ -27,6 +27,9 @@ Below you can find the whole code for connecting and fetching data from MongoDB.
 
 
 ```js
+import { MongoClient } 
+from "mongodb";
+
 export async function 
 getStaticProps() {
 
@@ -59,6 +62,12 @@ getStaticProps() {
     props: data
   };
 }
+```
+In a first step, you need to install the required dependencies via **npm i mongodb**. After doing so, import the MongoClient with:
+
+```js
+import { MongoClient } 
+from "mongodb";
 ```
 
 As you can see, I constructed the whole function to be asynchronous, which usually is a good idea when it comes to data fetching. The first constant called **client** establishes the actual connection to your database. Inside the parentheses of the **connect function** you will need to replace the <username> and <password> with your credentials from the settings from the first step of this blog. Additionally, you will have to replace <dbname> with a name for the database of your choice!
