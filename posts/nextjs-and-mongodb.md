@@ -26,31 +26,33 @@ After setting up your user, go to **Network Access** and add your current IP-add
 
 
 ```js
-export async function getStaticProps() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://kevin:XkWJANgOTkACuIMGTzIIokbszqAo@cluster0.pqdli.mongodb.net/meetings?retryWrites=true&w=majority"
+export async function 
+getStaticProps() {
+  const client = 
+  await 
+  MongoClient.connect(
+    "mongodb+srv://
+    <username>:<username>
+    @cluster0
+    .pqdlimongodb.net/
+    <dbname>?retryWrites
+    =true&w=majority"
   );
-  const db = client.db();
+  const db = 
+  client.db();
 
-  const meetupsCollection = db.collection("meetups");
+  const yourCollection = 
+  db.collection("yourCollection");
 
-  // .find() findet by default alle einträge in der jeweiligen collection
-  const meetups = await meetupsCollection.find().toArray();
+
+  const yourData = 
+  await yourCollection
+  .find().toArray();
 
   client.close();
 
   return {
-    props: {
-      meetups: meetups.map((meetup) => ({
-        title: meetup.title,
-        address: meetup.address,
-        image: meetup.image,
-        // das hier ist die id, die von mongodb automatisch erstellt wird und die man konvertieren muss noch
-        id: meetup._id.toString(),
-        // description braucht man hier nicht, weil das nicht ausgegeben wird auf dieser Seite
-      })),
-    },
-    revalidate: 1,
+    props: data
   };
 }
 ```
